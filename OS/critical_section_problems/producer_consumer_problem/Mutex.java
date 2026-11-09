@@ -5,7 +5,6 @@ public class Mutex {
     private final AtomicBoolean locked = new AtomicBoolean(false);
 
     public void lock() {
-      // Checking if locked state is false, if yes then false->true
       while (!locked.compareAndSet(false, true)) {
         Thread.onSpinWait();
       }
